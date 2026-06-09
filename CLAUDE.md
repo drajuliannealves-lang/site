@@ -54,21 +54,29 @@ files are served as-is.
 
 The form posts to **Web3Forms** (`https://api.web3forms.com/submit`). `js/main.js` intercepts submit,
 validates, and sends via `fetch` so the user stays on the page. A hidden `botcheck` honeypot field
-guards against spam. To make it work, replace `YOUR_WEB3FORMS_ACCESS_KEY` in `index.html` with a real
-key from https://web3forms.com (free).
+guards against spam. The `access_key` is already set to the client's live Web3Forms key, so the form
+is functional.
 
-## Placeholders to replace before going live
+## Real business data (all filled in)
 
-These are intentionally fake and must be filled in:
+These were placeholders and are now set to the client's real data — keep them in sync if anything changes:
 
-- `YOUR_WEB3FORMS_ACCESS_KEY` — Web3Forms access key (in `index.html`).
-- `5500000000000` — WhatsApp number (floating button + contact list); also the `telephone` in JSON-LD.
-- `https://www.juliannealves.com.br/` — production domain (canonical, OG/Twitter URLs, JSON-LD,
-  `robots.txt`, `sitemap.xml`). Find-and-replace if the domain changes.
-- `contato@juliannealves.com.br` — contact e-mail.
-- `COREN-UF 000000` — professional registration number (footer).
-- Address fields in JSON-LD (`streetAddress`, `addressLocality`, `addressRegion`, `postalCode`).
-- Images: all real now. The page uses `assets/images/julianne-hero.jpg` (hero) and
+- **WhatsApp:** `(62) 99425-3164` → `wa.me/5562994253164` (floating button + contact list) and
+  `+55-62-99425-3164` as JSON-LD `telephone`.
+- **E-mail:** `drajuliannealves@gmail.com`.
+- **Domain:** `https://drajuliannealves.com.br/` (canonical, OG/Twitter URLs, JSON-LD, `robots.txt`,
+  `sitemap.xml`). Note: domain is `drajuliannealves` (no `www`).
+- **COREN-GO 274802** (footer).
+- **Home-care only:** JSON-LD has no street address — it uses `areaServed` = Goiás (GO) +
+  `availableService`. If a physical office is added later, restore a `PostalAddress`.
+- **Web3Forms key:** `8ded9a61-…` is live in the contact form.
+
+Note: `areaServed` is the whole state (Goiás) — narrow to a specific city/region for stronger local
+SEO once confirmed.
+
+## Image library
+
+- Images: all real. The page uses `assets/images/julianne-hero.jpg` (hero) and
   `julianne-sobre.jpg` (Sobre). The folder also holds an unused photo library for future
   sections/swaps: `julianne-azul-01/02/03`, `julianne-azul-banco`, `julianne-branco-01/02/03/04`,
   `julianne-bege-01`, `julianne-mala`, plus `logo-banner.jpg` (the logo on a green landscape band).
