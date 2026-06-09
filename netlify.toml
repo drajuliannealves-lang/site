@@ -1,0 +1,39 @@
+# Netlify — Dra. Julianne Alves
+# Site estático (HTML/CSS/JS puro), sem etapa de build. Servido a partir da raiz.
+
+[build]
+  publish = "."
+  command = ""
+
+# --- Canonical: força www -> apex (sem www), batendo com o <link rel="canonical"> ---
+[[redirects]]
+  from = "https://www.drajuliannealves.com.br/*"
+  to = "https://drajuliannealves.com.br/:splat"
+  status = 301
+  force = true
+
+# --- Cabeçalhos de segurança em todo o site ---
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+# --- Imagens / ícones / fontes: cache longo (nomes fixos, troca manual rara) ---
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# --- CSS/JS sem fingerprint: revalida sempre para nunca servir versão antiga ---
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
