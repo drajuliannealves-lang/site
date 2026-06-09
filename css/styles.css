@@ -1,0 +1,510 @@
+/* ============================================================
+   Dra. Julianne Alves — Landing Page
+   Direção estética: "Botânica Clínica de Luxo"
+   (Luxury / Refined · esmeralda + dourado + creme)
+   Âncora memorável: filete em gradiente dourado-branco-dourado
+   ============================================================ */
+
+:root {
+  /* ----- Cor: uma dominante (esmeralda), um acento (dourado), um neutro (creme) ----- */
+  --c-green: #0D4440;        /* dominante */
+  --c-green-deep: #082d2a;   /* profundidade */
+  --c-green-soft: #1d5650;
+  --c-gold: #BAA672;         /* acento */
+  --c-gold-deep: #9c8654;
+  --c-gold-soft: #d6c79b;
+  --c-cream: #F8F4E1;        /* neutro */
+  --c-cream-deep: #efe8cf;
+  --c-ink: #20302d;          /* texto sobre creme */
+  --c-ink-soft: #51605c;
+  --c-whatsapp: #25d366;
+
+  /* O gradiente dourado-branco-dourado, em duas formas */
+  --grad-gold: linear-gradient(120deg, var(--c-gold) 0%, #fffaf0 50%, var(--c-gold) 100%);
+  --rule-gold: linear-gradient(90deg, rgba(186,166,114,0) 0%, var(--c-gold) 18%, #ffffff 50%, var(--c-gold) 82%, rgba(186,166,114,0) 100%);
+
+  /* ----- Tipografia ----- */
+  --font-display: "Amiri", "Amira", Georgia, "Times New Roman", serif;
+  --font-body: "Alegreya Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+
+  /* ----- Layout / ritmo ----- */
+  --max: 1140px;
+  --radius: 6px;            /* cantos sóbrios, editoriais */
+  --shadow: 0 24px 60px -28px rgba(8, 45, 42, .55);
+  --shadow-sm: 0 10px 30px -18px rgba(8, 45, 42, .4);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 92px; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--c-ink);
+  background: var(--c-cream);
+  line-height: 1.65;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -.01em;
+  margin: 0 0 .5em;
+}
+h1 { font-size: clamp(2.4rem, 5.4vw, 3.9rem); }
+h2 { font-size: clamp(1.9rem, 3.8vw, 2.7rem); }
+h3 { font-size: 1.35rem; }
+h1 em, h2 em { color: var(--c-gold); }
+p { margin: 0 0 1rem; }
+
+/* ===== Layout helpers ===== */
+.container { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: 24px; }
+.narrow { max-width: 780px; }
+.section { padding: clamp(64px, 9vw, 112px) 0; position: relative; }
+.section-muted { background: var(--c-cream-deep); }
+
+/* Faixa esmeralda (inverte o tema do bloco) */
+.section-dark { background: var(--c-green); color: var(--c-cream); }
+.section-dark h2 { color: var(--c-cream); }
+
+/* ----- Eyebrow com filete dourado (recorrente) ----- */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  text-transform: uppercase; letter-spacing: .22em; font-size: .78rem;
+  font-weight: 700; color: var(--c-gold-deep); margin: 0 0 1rem;
+}
+.eyebrow::before {
+  content: ""; width: 34px; height: 2px; border-radius: 2px;
+  background: var(--grad-gold);
+}
+.eyebrow-light { color: var(--c-gold-soft); }
+
+/* ----- Cabeçalho de seção com âncora: filete dourado-branco-dourado ----- */
+.section-head { text-align: center; max-width: 660px; margin: 0 auto 56px; }
+.section-head .eyebrow { justify-content: center; }
+.section-head h2 { margin-bottom: 18px; }
+.section-head h2::after {
+  content: ""; display: block; width: 132px; height: 2px; margin: 20px auto 0;
+  background: var(--rule-gold);
+}
+.section-sub { color: var(--c-ink-soft); font-size: 1.08rem; }
+.section-dark .section-sub { color: rgba(248, 244, 225, .8); }
+
+/* ===== Botões ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 15px 30px; border-radius: var(--radius); font-weight: 700; font-size: 1rem;
+  letter-spacing: .02em; cursor: pointer; border: 1.5px solid transparent;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s ease, color .3s ease;
+}
+.btn:active { transform: translateY(1px); }
+
+/* primário: dourado fundido, texto esmeralda — joia */
+.btn-primary {
+  background: var(--grad-gold); background-size: 180% 180%; background-position: 0% 50%;
+  color: var(--c-green-deep); box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { background-position: 100% 50%; box-shadow: var(--shadow); transform: translateY(-2px); }
+
+/* fantasma sobre creme */
+.btn-ghost { background: transparent; color: var(--c-green); border-color: var(--c-gold); }
+.btn-ghost:hover { background: var(--c-green); color: var(--c-cream); border-color: var(--c-green); }
+
+/* fantasma sobre esmeralda */
+.btn-ghost-light { background: transparent; color: var(--c-cream); border-color: rgba(248, 244, 225, .45); }
+.btn-ghost-light:hover { background: rgba(248, 244, 225, .12); border-color: var(--c-cream); }
+
+.btn-block { width: 100%; }
+
+/* ===== Logotipo (selo JA) ===== */
+.brand-mark {
+  height: 46px; width: auto; flex: none; display: block;
+}
+
+/* ===== Header ===== */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(248, 244, 225, .82); backdrop-filter: blur(12px) saturate(1.1);
+  border-bottom: 1px solid transparent;
+  border-image: var(--rule-gold) 1;
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 78px; }
+.brand { display: flex; align-items: center; gap: 13px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-name { font-family: var(--font-display); font-size: 1.3rem; color: var(--c-green); }
+.brand-role { font-size: .72rem; letter-spacing: .18em; color: var(--c-gold-deep); text-transform: uppercase; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; list-style: none; margin: 0; padding: 0; }
+.nav-menu a { font-size: .98rem; font-weight: 500; color: var(--c-ink); position: relative; }
+.nav-menu a:not(.nav-cta)::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: -6px; height: 1.5px;
+  background: var(--c-gold); transition: right .3s var(--ease);
+}
+.nav-menu a:not(.nav-cta):hover { color: var(--c-green); }
+.nav-menu a:not(.nav-cta):hover::after { right: 0; }
+.nav-cta { background: var(--c-green); color: var(--c-cream) !important; padding: 10px 20px; border-radius: var(--radius); }
+.nav-cta:hover { background: var(--c-green-deep); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
+.nav-toggle span { width: 24px; height: 2px; background: var(--c-green); border-radius: 2px; transition: .2s; }
+
+/* ===== Hero (faixa esmeralda com brilho dourado + grão) ===== */
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(120% 120% at 82% 12%, rgba(186, 166, 114, .22) 0%, rgba(186, 166, 114, 0) 46%),
+    linear-gradient(160deg, var(--c-green) 0%, var(--c-green-deep) 100%);
+  color: var(--c-cream);
+  padding: clamp(64px, 9vw, 120px) 0;
+}
+/* marca d'água do logotipo embossado (esmeralda + ouro), bordas esfumadas */
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: url("/assets/images/logo-banner.jpg") no-repeat center / cover;
+  opacity: .35; mix-blend-mode: soft-light;
+  -webkit-mask-image: radial-gradient(115% 90% at 72% 46%, #000 26%, transparent 72%);
+          mask-image: radial-gradient(115% 90% at 72% 46%, #000 26%, transparent 72%);
+}
+/* grão sutil para profundidade de luxo */
+.hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+.hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+.hero h1 { color: var(--c-cream); }
+.hero-lead { font-size: 1.2rem; color: rgba(248, 244, 225, .85); max-width: 47ch; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 30px; }
+
+/* retrato emoldurado em dourado (moldura deslocada) */
+.hero-media { position: relative; }
+.hero-media img {
+  position: relative; z-index: 1; border-radius: var(--radius);
+  box-shadow: var(--shadow); object-fit: cover; width: 100%;
+}
+.hero-frame {
+  position: absolute; inset: 18px -18px -18px 18px; z-index: 0;
+  border: 1.5px solid var(--c-gold); border-radius: var(--radius);
+}
+
+/* ===== Duas colunas ===== */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.col-media { position: relative; }
+.col-media img { border-radius: var(--radius); box-shadow: var(--shadow-sm); object-fit: cover; width: 100%; position: relative; z-index: 1; }
+.col-media::before {
+  content: ""; position: absolute; inset: 16px -16px -16px 16px;
+  border: 1.5px solid var(--c-gold); border-radius: var(--radius); z-index: 0;
+}
+
+/* ===== Listas ===== */
+.check-list { list-style: none; padding: 0; margin: 1.4rem 0 0; display: grid; gap: 12px; }
+.check-list li { position: relative; padding-left: 32px; }
+.check-list li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: 16px; height: 8px; border-left: 2px solid var(--c-gold); border-bottom: 2px solid var(--c-gold);
+  transform: rotate(-45deg);
+}
+
+/* ===== Cards (serviços) ===== */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.card {
+  background: var(--c-cream); border: 1px solid var(--c-gold-soft); border-radius: var(--radius);
+  padding: 38px 30px; box-shadow: var(--shadow-sm);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .3s ease;
+  position: relative; overflow: hidden;
+}
+/* filete dourado-branco-dourado no topo, revelado no hover */
+.card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--rule-gold); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease);
+}
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--c-gold); }
+.card:hover::before { transform: scaleX(1); }
+.card-icon {
+  width: 60px; height: 60px; display: grid; place-items: center; font-size: 1.7rem;
+  background: var(--c-green); color: var(--c-gold-soft); border-radius: 50%; margin-bottom: 22px;
+  box-shadow: inset 0 0 0 1px var(--c-gold);
+}
+.card h3 { color: var(--c-green); }
+.card p { color: var(--c-ink-soft); margin: 0; }
+
+/* ===== Features (diferenciais — sobre esmeralda) ===== */
+.features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.feature { padding: 26px 24px; border-top: 2px solid var(--c-gold); background: rgba(248, 244, 225, .05); border-radius: 0 0 var(--radius) var(--radius); }
+.feature h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--c-cream); }
+.feature p { color: rgba(248, 244, 225, .78); margin: 0; font-size: .98rem; }
+
+/* ===== FAQ ===== */
+.faq { display: grid; gap: 14px; }
+.faq details {
+  background: var(--c-cream); border: 1px solid var(--c-gold-soft); border-radius: var(--radius);
+  padding: 4px 24px; transition: border-color .3s ease;
+}
+.faq details[open] { border-color: var(--c-gold); }
+.faq summary {
+  cursor: pointer; font-family: var(--font-display); font-size: 1.18rem; color: var(--c-green);
+  padding: 18px 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 14px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--c-gold-deep); font-size: 1.5rem; font-weight: 400; transition: transform .3s var(--ease); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { color: var(--c-ink-soft); margin: 0 0 18px; }
+
+/* ===== Contato / Form ===== */
+.contact-list { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 14px; }
+.contact-list a { color: var(--c-green); font-weight: 700; border-bottom: 1px solid var(--c-gold); }
+.contact-list a:hover { color: var(--c-gold-deep); }
+.col-form form {
+  background: var(--c-cream); border: 1px solid var(--c-gold-soft); border-radius: var(--radius);
+  padding: 36px; box-shadow: var(--shadow-sm); display: grid; gap: 18px;
+}
+.field { display: grid; gap: 7px; }
+.field label { font-size: .9rem; font-weight: 700; letter-spacing: .02em; color: var(--c-green); text-transform: uppercase; }
+.field input, .field textarea {
+  font: inherit; font-size: 1rem; padding: 13px 15px; border: 1px solid var(--c-gold-soft); border-radius: var(--radius);
+  background: #fffdf6; color: var(--c-ink); transition: border-color .2s ease, box-shadow .2s ease;
+}
+.field input:focus, .field textarea:focus {
+  outline: none; border-color: var(--c-gold); box-shadow: 0 0 0 3px rgba(186, 166, 114, .25);
+}
+.field textarea { resize: vertical; }
+.form-status { margin: 0; font-size: .95rem; min-height: 1.2em; }
+.form-status.ok { color: var(--c-green); font-weight: 700; }
+.form-status.err { color: #a13b2a; font-weight: 700; }
+
+/* ===== Footer ===== */
+.site-footer { background: var(--c-green-deep); color: rgba(248, 244, 225, .8); padding: 56px 0 40px; }
+.footer-inner { display: grid; gap: 22px; text-align: center; justify-items: center; }
+.footer-brand { display: grid; justify-items: center; gap: 14px; }
+.footer-logo { width: 150px; height: 150px; border-radius: 50%; box-shadow: 0 12px 36px -14px rgba(0, 0, 0, .55); }
+.footer-role { font-size: .9rem; color: var(--c-gold-soft); margin: 0; letter-spacing: .02em; }
+.site-footer nav { display: flex; gap: 26px; justify-content: center; flex-wrap: wrap; }
+.site-footer nav a { color: rgba(248, 244, 225, .8); }
+.site-footer nav a:hover { color: var(--c-gold); }
+.footer-copy { font-size: .82rem; color: rgba(248, 244, 225, .5); margin: 0; }
+
+/* ===== WhatsApp flutuante ===== */
+.whatsapp-float {
+  position: fixed; right: 22px; bottom: 22px; z-index: 60;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--c-whatsapp); color: #fff;
+  display: grid; place-items: center;
+  box-shadow: 0 10px 28px -8px rgba(37, 211, 102, .65), 0 0 0 4px rgba(186, 166, 114, .25);
+  transition: transform .3s var(--ease);
+  animation: wa-pulse 2.6s infinite;
+}
+.whatsapp-float:hover { transform: scale(1.08); }
+@keyframes wa-pulse {
+  0% { box-shadow: 0 10px 28px -8px rgba(37, 211, 102, .65), 0 0 0 0 rgba(37, 211, 102, .5); }
+  70% { box-shadow: 0 10px 28px -8px rgba(37, 211, 102, .65), 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 10px 28px -8px rgba(37, 211, 102, .65), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* ===== Frase em destaque (pull quote) ===== */
+.quote-band {
+  position: relative; overflow: hidden; text-align: center;
+  background: linear-gradient(160deg, var(--c-green) 0%, var(--c-green-deep) 100%);
+  color: var(--c-cream); padding: clamp(56px, 8vw, 96px) 0;
+}
+.quote-band::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--rule-gold); }
+.pull-quote { margin: 0; }
+.pull-quote p {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2.15rem); line-height: 1.42; margin: 0 auto 1.4rem; max-width: 42ch;
+}
+.pull-quote cite {
+  display: inline-flex; align-items: center; gap: 12px; font-style: normal;
+  font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: var(--c-gold-soft);
+}
+.pull-quote cite::before { content: ""; width: 28px; height: 1.5px; background: var(--c-gold); }
+
+/* ===== Áreas de Atuação ===== */
+.areas {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.areas li {
+  position: relative; padding: 16px 18px 16px 48px;
+  background: #fffdf7; border: 1px solid var(--c-gold-soft); border-radius: var(--radius);
+  font-weight: 500; color: var(--c-ink); transition: border-color .25s ease, transform .25s var(--ease);
+}
+.areas li:hover { border-color: var(--c-gold); transform: translateY(-2px); }
+.areas li::before {
+  content: ""; position: absolute; left: 20px; top: 50%; width: 14px; height: 7px;
+  border-left: 2px solid var(--c-gold-deep); border-bottom: 2px solid var(--c-gold-deep);
+  transform: translateY(-70%) rotate(-45deg);
+}
+
+/* ===== Carrossel (imagem + texto) ===== */
+.carousel { position: relative; }
+.carousel-viewport {
+  overflow: hidden; border-radius: var(--radius);
+  border: 1px solid var(--c-gold-soft); box-shadow: var(--shadow-sm);
+}
+.carousel-track { display: flex; list-style: none; margin: 0; padding: 0; transition: transform .55s var(--ease); }
+.cslide {
+  flex: 0 0 100%; min-width: 0;
+  display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; background: var(--c-cream);
+}
+.cslide-media img { width: 100%; height: 100%; object-fit: cover; min-height: 380px; }
+.cslide-text { padding: clamp(28px, 4vw, 52px); display: flex; flex-direction: column; justify-content: center; }
+.cslide-step { font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--c-gold); }
+.cslide-text h3 { color: var(--c-green); font-size: 1.65rem; margin: 6px 0 .6rem; }
+.cslide-text p { color: var(--c-ink-soft); margin: 0; font-size: 1.05rem; }
+
+.carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+  width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--c-gold);
+  background: var(--c-cream); color: var(--c-green); font-size: 1.9rem; line-height: 1;
+  cursor: pointer; display: grid; place-items: center; box-shadow: var(--shadow-sm);
+  transition: background .25s ease, color .25s ease, transform .25s var(--ease);
+}
+.carousel-arrow:hover { background: var(--c-green); color: var(--c-cream); }
+.carousel-arrow:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 2px; }
+.carousel-arrow.prev { left: -12px; }
+.carousel-arrow.next { right: -12px; }
+
+.carousel-dots { display: flex; gap: 10px; justify-content: center; margin-top: 26px; }
+.carousel-dots button {
+  width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--c-gold-deep);
+  background: transparent; cursor: pointer; padding: 0;
+  transition: background .25s ease, transform .25s ease;
+}
+.carousel-dots button[aria-selected="true"] { background: var(--c-gold); border-color: var(--c-gold); transform: scale(1.2); }
+
+/* ===== Missão ===== */
+.mission { text-align: center; }
+.mission-inner { display: grid; justify-items: center; }
+.mission .eyebrow { justify-content: center; }
+.mission h2::after { content: ""; display: block; width: 132px; height: 2px; margin: 18px auto 0; background: var(--rule-gold); }
+.mission-text {
+  font-family: var(--font-display); font-size: clamp(1.3rem, 2.6vw, 1.85rem); line-height: 1.5;
+  color: var(--c-ink); max-width: 46ch; margin: 10px 0 0;
+}
+
+/* ============================================================
+   Premium — microinterações, navegação e revelação no scroll
+   ============================================================ */
+
+/* Âncoras não ficam escondidas sob o header fixo */
+:where(section[id]) { scroll-margin-top: 92px; }
+
+/* Foco visível dourado + seleção de texto on-brand */
+:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 3px; border-radius: 3px; }
+.btn:focus-visible, .nav-cta:focus-visible { outline-offset: 4px; }
+::selection { background: rgba(186, 166, 114, .32); color: var(--c-green-deep); }
+
+/* Quebra de linha equilibrada em títulos e frases longas */
+h1, h2, h3, .pull-quote p, .mission-text, .hero-lead { text-wrap: balance; }
+
+/* Barra de progresso de leitura (filete dourado no topo) */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 70;
+  background: var(--grad-gold); box-shadow: 0 0 10px rgba(186, 166, 114, .5);
+  transition: width .12s linear; pointer-events: none;
+}
+
+/* Header condensa e ganha sombra ao rolar */
+.site-header { transition: background .35s ease, box-shadow .35s ease; }
+.site-header.scrolled { background: rgba(248, 244, 225, .94); box-shadow: 0 12px 34px -20px rgba(8, 45, 42, .55); }
+.header-inner { transition: min-height .35s var(--ease); }
+.site-header.scrolled .header-inner { min-height: 64px; }
+.brand-mark { transition: height .35s var(--ease); }
+.site-header.scrolled .brand-mark { height: 40px; }
+
+/* Link de navegação ativo (scrollspy) — sublinhado dourado preenchido */
+.nav-menu a.active:not(.nav-cta) { color: var(--c-green); }
+.nav-menu a.active:not(.nav-cta)::after { right: 0; }
+
+/* Botão primário com brilho deslizante no hover */
+.btn { position: relative; overflow: hidden; }
+.btn-primary::after {
+  content: ""; position: absolute; top: 0; left: -135%; width: 70%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .55), transparent);
+  transform: skewX(-18deg); pointer-events: none; transition: left .6s var(--ease);
+}
+.btn-primary:hover::after { left: 135%; }
+
+/* Zoom suave nas fotos do carrossel */
+.cslide-media { overflow: hidden; }
+.cslide-media img { transition: transform .9s var(--ease); }
+.cslide:hover .cslide-media img { transform: scale(1.05); }
+
+/* Moldura dourada do retrato reage ao hover */
+.hero-frame, .col-media::before { transition: inset .45s var(--ease), border-color .3s ease; }
+.hero-media:hover .hero-frame { inset: 12px -12px -12px 12px; }
+.col-media:hover::before { inset: 10px -10px -10px 10px; }
+
+/* Ícone do card ganha leve realce */
+.card-icon { transition: transform .5s var(--ease); }
+.card:hover .card-icon { transform: translateY(-3px) scale(1.06); }
+
+/* Itens da lista de contato com leve deslize */
+.contact-list a { transition: color .25s ease, letter-spacing .25s ease; }
+.contact-list a:hover { letter-spacing: .01em; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Revelação no scroll — só com JS ativo, para ser seguro sem JS */
+  html.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  html.js .reveal.reveal-in { opacity: 1; transform: none; }
+
+  /* Entrada encenada do hero ao carregar */
+  html.js .hero-content > * { opacity: 0; animation: heroUp .85s var(--ease) forwards; }
+  html.js .hero-content > *:nth-child(1) { animation-delay: .15s; }
+  html.js .hero-content > *:nth-child(2) { animation-delay: .28s; }
+  html.js .hero-content > *:nth-child(3) { animation-delay: .41s; }
+  html.js .hero-content > *:nth-child(4) { animation-delay: .54s; }
+  html.js .hero-media { opacity: 0; animation: heroIn 1s var(--ease) .35s forwards; }
+}
+@keyframes heroUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes heroIn { from { opacity: 0; transform: translateY(20px) scale(.985); } to { opacity: 1; transform: none; } }
+
+/* ============================================================
+   Responsivo
+   ============================================================ */
+@media (max-width: 920px) {
+  .hero-inner, .two-col { grid-template-columns: 1fr; }
+  .hero-media { order: -1; max-width: 430px; margin-inline: auto; }
+  .hero-frame { inset: 14px -14px -14px 14px; }
+  .col-media { max-width: 480px; margin-inline: auto; }
+  .cards { grid-template-columns: 1fr; }
+  .features { grid-template-columns: 1fr 1fr; }
+  .areas { grid-template-columns: 1fr 1fr; }
+  .cslide { grid-template-columns: 1fr; }
+  .cslide-media img { min-height: 280px; }
+}
+
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; }
+  .nav-menu {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; gap: 0; background: var(--c-cream);
+    border-bottom: 1px solid var(--c-gold-soft);
+    max-height: 0; overflow: hidden; transition: max-height .3s var(--ease);
+  }
+  .nav-menu.open { max-height: 460px; }
+  .nav-menu li { width: 100%; text-align: center; border-top: 1px solid var(--c-cream-deep); }
+  .nav-menu a { display: block; padding: 16px; width: 100%; }
+  .nav-menu a:not(.nav-cta)::after { display: none; }
+  .nav-cta { border-radius: 0; }
+
+  .carousel-arrow { width: 42px; height: 42px; font-size: 1.5rem; }
+  .carousel-arrow.prev { left: 6px; }
+  .carousel-arrow.next { right: 6px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .features { grid-template-columns: 1fr; }
+  .areas { grid-template-columns: 1fr; }
+}
+
+/* ===== Acessibilidade: reduzir movimento ===== */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
+}
