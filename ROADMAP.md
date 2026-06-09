@@ -37,7 +37,15 @@ Pendências e próximos passos do site. Marque `[x]` ao concluir.
 ### SEO local off-page (fora do site, mas essencial)
 - [ ] **Criar o Google Business Profile** (Perfil da Empresa no Google) — alavanca nº 1 de SEO local.
       Categoria sugerida: "Enfermeiro(a)". Preencher serviços, área de atendimento, fotos, horário e WhatsApp.
-- [ ] **Verificar o site no Google Search Console** e enviar o `sitemap.xml`.
+- [ ] **Adicionar o site ao Google Search Console** (verificar propriedade + enviar sitemap):
+  1. Acessar [search.google.com/search-console](https://search.google.com/search-console) e clicar em **Adicionar propriedade**.
+  2. Escolher o tipo **Domínio** → `drajuliannealves.com.br` (cobre apex, `www`, `http` e `https` de uma vez).
+  3. Verificar via **registro DNS TXT** no registro.br (o GSC fornece o valor a colar).
+     Alternativa: tipo **Prefixo do URL** (`https://drajuliannealves.com.br/`) com verificação por tag `<meta>`, arquivo HTML ou GA4.
+  4. Em **Sitemaps**, enviar `sitemap.xml` (URL: `https://drajuliannealves.com.br/sitemap.xml`).
+  5. Usar **Inspeção de URL** na home → **Solicitar indexação**.
+  6. Após alguns dias, conferir **Páginas/Cobertura** e **Resultados aprimorados** (deve listar o **FAQ** do `FAQPage`).
+  7. (Opcional) Vincular ao **GA4** e ao **Bing Webmaster Tools** (importa direto do GSC).
 - [ ] **Coletar e responder avaliações** (Google) — prova social + ranqueamento local.
 
 ### Deploy / publicação
