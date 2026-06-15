@@ -25,6 +25,26 @@
     });
   }
 
+  /* ---- Rastreamento de clique no WhatsApp (dataLayer → GTM) ---- */
+  // Dispara o evento "whatsapp_click" para todos os links wa.me (botão
+  // flutuante + link da lista de contato). No GTM, crie um acionador de
+  // "Evento personalizado" com nome whatsapp_click para a tag de conversão.
+  window.dataLayer = window.dataLayer || [];
+  Array.prototype.forEach.call(
+    document.querySelectorAll('a[href*="wa.me"]'),
+    function (link) {
+      link.addEventListener("click", function () {
+        window.dataLayer.push({
+          event: "whatsapp_click",
+          link_url: link.href,
+          link_location: link.classList.contains("whatsapp-float")
+            ? "botao_flutuante"
+            : "lista_contato"
+        });
+      });
+    }
+  );
+
   /* ---- Formulário de contato (Web3Forms via fetch) ---- */
   var form = document.getElementById("contact-form");
   var status = document.getElementById("form-status");
@@ -56,6 +76,11 @@
         .then(function (json) {
           if (json.success) {
             setStatus("Mensagem enviada com sucesso! Em breve entrarei em contato.", "ok");
+            // Conversão: formulário enviado com sucesso (dataLayer → GTM).
+            // No GTM, crie um acionador de "Evento personalizado" com nome
+            // form_submit_success para a tag de conversão.
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: "form_submit_success", form_id: "contact-form" });
             form.reset();
           } else {
             setStatus("Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.", "err");
